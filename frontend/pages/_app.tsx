@@ -1,10 +1,16 @@
+import Navigation from '@/components/navbar';
 import '../styles/globals.css';
+import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
-
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Component {...pageProps} />
+    <>
+      <SessionProvider session={pageProps.session}>
+        <Navigation />
+        <Component {...pageProps} />
+      </SessionProvider>
+    </>
   );
 }
 
